@@ -31,16 +31,18 @@ func main(){
         log.Fatal(ok)
     } 
     //fmt.Println(result)
-    for key, v := range result.Relations {
-        if v.Meta.Tags["ref"] == "" {
+    for key, relation := range result.Relations {
+        if relation.Meta.Tags["ref"] == "" {
             delete(result.Relations, key)
             continue
         }
 
-        fmt.Printf("key:[%v], ref:[%s], rel:[%s]\n", v.Meta.ID, v.Meta.Tags["ref"], v.Meta.Tags["type"])
-        for k, m := range v.Members {
-            if m.Role == "stop" {
-                fmt.Printf("\t%v: %v\n", k, m.Node.Meta.Tags["name"])
+        fmt.Printf("key:[%v], ref:[%s], rel:[%s]\n", relation.Meta.ID, relation.Meta.Tags["ref"], relation.Meta.Tags["type"])
+        for k, member := range relation.Members {
+            if member.Role == "stop" {
+                fmt.Printf("\t%v: %v\n", k, member.Node.Meta.Tags["name"])
+            } else {
+                // delete(relation.Members, k)
             }
         }
     }
