@@ -3,6 +3,9 @@ import (
     "fmt"
     "log"
     "github.com/serjvanilla/go-overpass"
+//    "gonum.org/v1/gonum/graph"
+    "gonum.org/v1/gonum/graph/topo"
+    "github.com/leftshift/mvg_graph/graph"
 )
 
 var query string = `
